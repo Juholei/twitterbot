@@ -4,5 +4,4 @@
 
 (defn -main
   [& args]
-  (twit/tweet "WHAT IS HAPPENING")
-  )
+  (twit/tweet "WHAT IS HAPPENING"))
