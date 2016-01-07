@@ -1,7 +1,7 @@
 (ns twitterbot.core
   (:gen-class)
-  (:require [twitterbot.mytwitter :as twit]))
+  (:require [twitterbot.mytwitter :refer [tweet]]))
 
 (defn -main
   [& args]
-  (twit/tweet "WHAT IS HAPPENING"))
+  (tweet ":-D"))

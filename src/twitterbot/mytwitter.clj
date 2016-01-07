@@ -4,7 +4,7 @@
         [twitter.api.restful])
     (:require [clojure.edn :as edn]))
 
-(defn load-credentials [filename]
+(defn- load-credentials [filename]
   (edn/read-string (slurp filename)))
 
 (def credentials-from-file (load-credentials "credentials.edn"))
