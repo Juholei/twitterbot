@@ -1,7 +1,8 @@
 (ns twitterbot.core
   (:gen-class)
-  (:require [twitterbot.mytwitter :refer [tweet]]))
+  (:require [twitterbot.my-twitter :refer [tweet]]
+            [twitterbot.tweet-backlog :as backlog]))
 
 (defn -main
   [& args]
-  (tweet ":-D"))
+  (tweet (backlog/pop-a-tweet "things_to_tweet.txt")))
