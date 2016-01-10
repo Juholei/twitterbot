@@ -2,7 +2,8 @@
     (:use
         [twitter.oauth]
         [twitter.api.restful])
-    (:require [clojure.edn :as edn]))
+    (:require [clojure.edn :as edn]
+              [clojure.string :as string]))
 
 (defn- load-credentials [filename]
   (edn/read-string (slurp filename)))
@@ -14,6 +15,7 @@
                                          (credentials-from-file :usertoken)
                                          (credentials-from-file :usersecret)))
 
-(defn tweet [string]
-  (statuses-update :oauth-creds oauth-credentials
-                   :params {:status string}))
+(defn tweet [title url]
+  (let [to-be-tweeted (string/join " " [title url])]
+    (statuses-update :oauth-creds oauth-credentials
+                     :params {:status to-be-tweeted})))
