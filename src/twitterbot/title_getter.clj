@@ -1,5 +1,5 @@
 (ns twitterbot.title-getter
-    (:require [clj-http.lite.client :as client]))
+    (:require [clj-http.client :as client]))
 
 (defn get-title
   [url]
