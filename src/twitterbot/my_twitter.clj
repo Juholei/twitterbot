@@ -19,3 +19,8 @@
   (let [to-be-tweeted (string/join " " [title url])]
     (statuses-update :oauth-creds oauth-credentials
                      :params {:status to-be-tweeted})))
+
+(defn dm-trusted-user [message]
+  (direct-messages-new :oauth-creds oauth-credentials
+                       :params {:screen-name (credentials-from-file :trusteduser)
+                                :text message}))
