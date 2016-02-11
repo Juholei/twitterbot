@@ -20,16 +20,18 @@
     (statuses-update :oauth-creds oauth-credentials
                      :params {:status to-be-tweeted})))
 
-(defn- url? [message]
+(defn- has-url? [message]
   (seq (:urls (:entities message))))
 
-(defn- trusted? [message]
+(defn- trusted-user? [message]
   (= (credentials-from-file :trusteduser) (:sender_screen_name message)))
 
-(defn my-direct-messages []
-  (let [messages (direct-messages :oauth-creds oauth-credentials)]
-    (println (filter url? (filter trusted? (:body messages))))))
+(defn- get-url [message]
+  (:expanded_url (nth (:urls (:entities message)) 0)))
 
+(defn links-from-direct-messages []
+  (let [messages (direct-messages :oauth-creds oauth-credentials)]
+    (map get-url (filter has-url? (filter trusted-user? (:body messages))))))
 
 (defn dm-trusted-user [message]
   (direct-messages-new :oauth-creds oauth-credentials
