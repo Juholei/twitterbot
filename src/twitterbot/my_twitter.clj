@@ -29,8 +29,8 @@
 (defn- get-url [message]
   (:expanded_url (nth (:urls (:entities message)) 0)))
 
-(defn links-from-direct-messages []
-  (let [messages (direct-messages :oauth-creds oauth-credentials)]
+(defn links-from-direct-messages [twitter-dm-response]
+  (let [messages twitter-dm-response]
     (map get-url (filter has-url? (filter trusted-user? (:body messages))))))
 
 (defn dm-trusted-user [message]
