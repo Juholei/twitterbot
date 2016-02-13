@@ -27,7 +27,7 @@
   (= (credentials-from-file :trusteduser) (:sender_screen_name message)))
 
 (defn- get-url [message]
-  (:expanded_url (nth (:urls (:entities message)) 0)))
+  (get-in message [:entities :urls 0 :expanded_url]))
 
 (defn links-from-direct-messages [twitter-dm-response]
   (->> twitter-dm-response
