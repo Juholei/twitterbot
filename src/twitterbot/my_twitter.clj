@@ -29,6 +29,9 @@
 (defn- get-url [message]
   (get-in message [:entities :urls 0 :expanded_url]))
 
+(defn get-direct-messages []
+  (direct-messages :oauth-creds oauth-credentials))
+
 (defn links-from-direct-messages [twitter-dm-response]
   (->> twitter-dm-response
       :body
