@@ -6,6 +6,8 @@
 
 (defn -main
   [& args]
-  (backlog/push-a-tweet "things_to_tweet.txt" (links-from-direct-messages (get-direct-messages)))
+  (let [links-to-add (links-from-direct-messages (get-direct-messages))]
+    (backlog/push-a-tweet "things_to_tweet.txt" links-to-add))
   (let [url (backlog/pop-a-tweet "things_to_tweet.txt")]
-    (tweet (get-title url) url)))
+    (tweet (get-title url) url)
+    (dm-trusted-user (str "Just tweeted " url))))

@@ -39,7 +39,6 @@
       (filter has-url?)
       (map get-url)))
 
-
 (defn dm-trusted-user [message]
   (direct-messages-new :oauth-creds oauth-credentials
                        :params {:screen-name (credentials-from-file :trusteduser)
