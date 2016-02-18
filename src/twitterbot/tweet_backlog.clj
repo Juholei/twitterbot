@@ -6,5 +6,5 @@
     (spit file (str (string/join "\n" (rest tweets)) "\n"))
     (first tweets)))
 
-(defn push-a-tweet [file new-links]
-  (spit file (str (string/join "\n" new-links) "\n") :append true))
+(defn push-a-tweet [file new-link]
+  (spit file (str new-link "\n") :append true))
