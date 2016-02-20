@@ -6,9 +6,12 @@
 
 (defn -main
   [& args]
-  (let [links-to-add (links-from-direct-messages (get-direct-messages))]
-    (doseq [link links-to-add]
-           (backlog/push-a-tweet "things_to_tweet.txt" link)))
+  (let [dm-response (get-direct-messages (backlog/newest-dm-read "newest_dm_id.txt"))]
+    (backlog/update-newest-dm-read "newest_dm_id.txt" (get-in dm-response [:body 0 :id_str]))
+    (let [links-to-add (links-from-direct-messages dm-response)]
+      (doseq [link links-to-add]
+             (backlog/push-a-tweet "things_to_tweet.txt" link)
+             (dm-trusted-user (str "Added " link)))))
   (let [url (backlog/pop-a-tweet "things_to_tweet.txt")]
     (tweet (get-title url) url)
     (dm-trusted-user (str "Just tweeted " url))))
