@@ -3,4 +3,4 @@
 
 (defn get-title
   [url]
-  (nth (re-find #"<title>(.*)</title>" ((client/get url) :body)) 1))
+  (nth (re-find #"<title>\s*(.*)\s*</title>" ((client/get url) :body)) 1))
