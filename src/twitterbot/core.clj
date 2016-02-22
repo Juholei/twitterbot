@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [twitterbot.my-twitter :refer :all]
             [twitterbot.tweet-backlog :as backlog]
-            [twitterbot.title-getter :refer [get-title]]))
+            [twitterbot.title-getter :refer [retrieve-webpage get-title-from-webpage]]))
 
 (defn -main
   [& args]
@@ -13,5 +13,8 @@
              (backlog/push-a-tweet "things_to_tweet.txt" link)
              (dm-trusted-user (str "Added " link)))))
   (let [url (backlog/pop-a-tweet "things_to_tweet.txt")]
-    (tweet (get-title url) url)
+    (-> url
+        retrieve-webpage
+        get-title-from-webpage
+        (tweet url))
     (dm-trusted-user (str "Just tweeted " url))))
