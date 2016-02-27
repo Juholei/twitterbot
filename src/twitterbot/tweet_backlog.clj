@@ -1,6 +1,6 @@
 (ns twitterbot.tweet-backlog
-  (:require [clojure.string :as string])
-  (:require [clojure.java.io :as io]))
+  (:require [clojure.string :as string]
+            [clojure.java.io :as io]))
 
 (defn pop-a-tweet [filename]
   (let [tweets (string/split-lines (slurp filename))]
