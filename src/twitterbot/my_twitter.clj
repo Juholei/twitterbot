@@ -32,7 +32,7 @@
 (defn get-direct-messages [dm-id]
   (if dm-id
     (direct-messages :oauth-creds oauth-credentials
-                      :params {:since_id dm-id})
+                     :params {:since_id dm-id})
     (direct-messages :oauth-creds oauth-credentials)))
 
 (defn links-from-direct-messages [twitter-dm-response]

@@ -13,3 +13,7 @@
 (deftest when-title-contains-html-ampersand-it-is-replaced-by-correct-character
   (testing ""
       (is (= "Great title with & and stuff" (replace-html-characters "Great title with &amp; and stuff")))))
+
+(deftest original-fail-case
+  (testing ""
+      (is (= "Eight Terminal Utilities Every OS X Command Line User Should Know • mitchchn.me" (replace-html-characters "Eight Terminal Utilities Every OS X Command Line User Should Know &middot; mitchchn.me")))))

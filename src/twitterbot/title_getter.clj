@@ -12,4 +12,4 @@
   (nth (re-find #"<title>\s*(.*)\s*</title>" html) 1))
 
 (defn replace-html-characters [text]
-  (string/replace text "&amp;" "&"))
+  (string/join " " (replace html-character-map (string/split text #" "))))
