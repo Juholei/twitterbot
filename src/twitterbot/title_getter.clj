@@ -11,5 +11,10 @@
 (defn get-title-from-webpage [html]
   (nth (re-find #"<title>\s*(.*)\s*</title>" html) 1))
 
+(defn- replace-html-character [text characters]
+  (if (empty? characters)
+    (str text)
+    (recur (string/replace text (first characters) (html-character-map (first characters))) (rest characters))))
+
 (defn replace-html-characters [text]
-  (string/join " " (replace html-character-map (string/split text #" "))))
+  (replace-html-character text (keys html-character-map)))
