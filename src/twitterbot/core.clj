@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [twitterbot.my-twitter :refer :all]
             [twitterbot.tweet-backlog :as backlog]
-            [twitterbot.title-getter :refer [retrieve-webpage get-title-from-webpage]]))
+            [twitterbot.title-getter :refer [retrieve-webpage get-title-from-webpage replace-html-characters]]))
 
 (defn -main
   [& args]
@@ -16,5 +16,6 @@
     (-> url
         retrieve-webpage
         get-title-from-webpage
+        replace-html-characters
         (tweet url))
     (dm-trusted-user (str "Just tweeted " url))))
