@@ -1,8 +1,12 @@
 (ns twitterbot.my-twitter
     (:require [twitter.oauth :refer [make-oauth-creds]]
-              [twitter.api.restful :refer [statuses-update direct-messages direct-messages-new]]
+              [twitter.api.restful :refer [statuses-update direct-messages
+                                           direct-messages-new help-configuration]]
               [clojure.edn :as edn]
               [clojure.string :as string]))
+
+(def ^:private max-link-length 23)
+(def ^:private max-tweet-length 140)
 
 (defn- load-credentials [filename]
   (edn/read-string (slurp filename)))
@@ -14,6 +18,7 @@
                     (credentials-from-file :consumersecret)
                     (credentials-from-file :usertoken)
                     (credentials-from-file :usersecret)))
+
 
 (defn tweet [title url]
   (let [to-be-tweeted (string/join " " [title url])]
@@ -46,3 +51,6 @@
   (direct-messages-new :oauth-creds oauth-credentials
                        :params {:screen-name (credentials-from-file :trusteduser)
                                 :text message}))
+
+(defn too-long-tweet? [string]
+  (<= (count string) max-tweet-length))
