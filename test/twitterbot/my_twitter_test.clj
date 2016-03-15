@@ -6,7 +6,7 @@
 (defn- load-credentials [filename]
   (edn/read-string (slurp filename)))
 
-(def ^:private credentials-from-file (load-credentials "credentials.edn"))
+(def ^:private credentials-from-file (load-credentials "config.edn"))
 
 ;This test requires that trusted user has been set in credentials.edn file
 (deftest links-from-direct-messages-returns-correct-link

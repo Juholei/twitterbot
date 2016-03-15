@@ -11,7 +11,7 @@
 (defn- load-credentials [filename]
   (edn/read-string (slurp filename)))
 
-(def ^:private credentials-from-file (load-credentials "credentials.edn"))
+(def ^:private credentials-from-file (load-credentials "config.edn"))
 
 (def ^:private oauth-credentials
   (make-oauth-creds (credentials-from-file :consumerkey)
