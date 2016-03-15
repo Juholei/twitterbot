@@ -2,16 +2,11 @@
     (:require [twitter.oauth :refer [make-oauth-creds]]
               [twitter.api.restful :refer [statuses-update direct-messages
                                            direct-messages-new help-configuration]]
-              [clojure.edn :as edn]
-              [clojure.string :as string]))
+              [clojure.string :as string]
+              [twitterbot.config :refer [credentials-from-file]]))
 
 (def ^:private max-link-length 23)
 (def ^:private max-tweet-length 140)
-
-(defn- load-credentials [filename]
-  (edn/read-string (slurp filename)))
-
-(def ^:private credentials-from-file (load-credentials "config.edn"))
 
 (def ^:private oauth-credentials
   (make-oauth-creds (credentials-from-file :consumerkey)
