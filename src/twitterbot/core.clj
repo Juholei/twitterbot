@@ -23,5 +23,4 @@
 
 (defn -main [& args]
   (get-links-from-direct-messages)
-  (tweet-from-backlog)
-)
+  (tweet-from-backlog))

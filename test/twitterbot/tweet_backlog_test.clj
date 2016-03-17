@@ -17,10 +17,9 @@
       (is (= "https://daringfireball.net/" (pop-a-tweet test-file)))))
 
 (deftest pushing-pushing-popping-pushing
-  (testing "jee"
+  (testing "Putting two links and getting one out and then adding a new one results in the second and third link being in the file"
     (push-a-tweet test-file "https://daringfireball.net/")
     (push-a-tweet test-file "https://marco.org/")
-    ; (pop-a-tweet test-file)
     (is (= "https://daringfireball.net/" (pop-a-tweet test-file)))
     (push-a-tweet test-file "http://www.merlinmann.com/roderick/")
     (is (= "https://marco.org/\nhttp://www.merlinmann.com/roderick/\n"
