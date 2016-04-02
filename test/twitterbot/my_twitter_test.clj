@@ -22,4 +22,6 @@
   (testing "Too long tweet of 141 characters is recognized to be too long"
     (is (= false (too-long-tweet? "Hello. This is a tweet. Tweeting is really nice. I sometimes wonder how many things I have to say. Now I can tell you all my secrets. First I")))))
 
-(deftest add-hashtags-from-config)
+(deftest add-hashtags-to-tweet
+  (testing "Add hashtags to tweet when the result is not over 140 characters"
+    (is (= "Hacker News #programming #coding" (add-hashtags "Hacker News" ["#programming" "#coding"])))))

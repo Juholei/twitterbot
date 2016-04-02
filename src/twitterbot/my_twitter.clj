@@ -48,4 +48,12 @@
                                 :text message}))
 
 (defn too-long-tweet? [string]
-  (<= (count string) max-tweet-length))
+  (<= (+ (count string) max-link-length) max-tweet-length))
+
+(defn add-hashtags [page-title hashtags]
+  (if (empty? hashtags)
+    (str page-title)
+    (do
+      (let [new-tweet (string/join " " [page-title (first hashtags)])]
+        (when (complement too-long-tweet?) new-tweet)
+          (recur new-tweet (rest hashtags))))))
