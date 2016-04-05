@@ -3,4 +3,5 @@
  :usertoken "usertoken"
  :usersecret "usersecret"
  :trusteduser "screenname of trusted user"
+ :hashtags ["#hashtags" "#to" "#be" "#added" "#to" "#the" "#tweets"]
 }
