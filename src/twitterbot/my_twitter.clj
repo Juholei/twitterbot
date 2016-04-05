@@ -3,16 +3,16 @@
               [twitter.api.restful :refer [statuses-update direct-messages
                                            direct-messages-new help-configuration]]
               [clojure.string :as string]
-              [twitterbot.config :refer [credentials-from-file]]))
+              [twitterbot.config :refer [config]]))
 
 (def ^:private max-link-length 23)
 (def ^:private max-tweet-length 140)
 
 (def ^:private oauth-credentials
-  (make-oauth-creds (credentials-from-file :consumerkey)
-                    (credentials-from-file :consumersecret)
-                    (credentials-from-file :usertoken)
-                    (credentials-from-file :usersecret)))
+  (make-oauth-creds (config :consumerkey)
+                    (config :consumersecret)
+                    (config :usertoken)
+                    (config :usersecret)))
 
 
 (defn tweet [title url]
@@ -24,7 +24,7 @@
   (seq (:urls (:entities message))))
 
 (defn- trusted-user? [message]
-  (= (credentials-from-file :trusteduser) (:sender_screen_name message)))
+  (= (config :trusteduser) (:sender_screen_name message)))
 
 (defn- get-url [message]
   (get-in message [:entities :urls 0 :expanded_url]))
@@ -44,7 +44,7 @@
 
 (defn dm-trusted-user [message]
   (direct-messages-new :oauth-creds oauth-credentials
-                       :params {:screen-name (credentials-from-file :trusteduser)
+                       :params {:screen-name (config :trusteduser)
                                 :text message}))
 
 (defn too-long-tweet? [string]

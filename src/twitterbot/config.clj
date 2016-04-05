@@ -4,4 +4,4 @@
 (defn- load-config [filename]
   (edn/read-string (slurp filename)))
 
-(def credentials-from-file (load-config "config.edn"))
+(def config (load-config "config.edn"))
