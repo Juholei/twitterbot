@@ -2,6 +2,7 @@
   (:gen-class)
   (:require [twitterbot.my-twitter :refer :all]
             [twitterbot.tweet-backlog :as backlog]
+            [twitterbot.config :refer [config]]
             [twitterbot.title-getter :refer [retrieve-webpage get-title-from-webpage replace-html-characters]]))
 
 (defn- get-links-from-direct-messages []
@@ -18,6 +19,7 @@
         retrieve-webpage
         get-title-from-webpage
         replace-html-characters
+        (add-hashtags (:hashtags config))
         (tweet url))
     (dm-trusted-user (str "Just tweeted " url))))
 

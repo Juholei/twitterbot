@@ -21,3 +21,7 @@
 (deftest add-hashtags-to-tweet
   (testing "Add hashtags to tweet when the result is not over 140 characters"
     (is (= "Hacker News #programming #coding" (add-hashtags "Hacker News" ["#programming" "#coding"])))))
+
+(deftest add-hashtags-when-there-are-none
+  (testing "add-hashtags is called without any hashtags given and results in nothing being added"
+    (is (= "Hacker News" (add-hashtags "Hacker News" [])))))
