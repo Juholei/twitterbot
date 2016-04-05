@@ -15,7 +15,7 @@ Checkout, build with Leiningen with command "lein uberjar"
 
 ## Usage
 1. Create file things_to_tweet.txt to the same folder where the jar is. Put links inside the file separated by a newline.
-2. Fill Twitter app and user account tokens and the screen name of the user account you want to use to add links via direct message in credentials.edn.example and save it to the same folder with the jar with the name credentials.edn.
+2. Fill Twitter app and user account tokens and the screen name of the user account you want to use to add links via direct message in config.edn.example and save it to the same folder with the jar with the name config.edn.
 3. Run with the command: java -jar twitterbot-0.1.0-standalone.jar
 4. If you want to add links, send them to the associated Twitter account from your account (that is set as the trusted account in credentials.edn). Direct messages are checked and links from them are added to the things_to_tweet.txt when run next time.
 
