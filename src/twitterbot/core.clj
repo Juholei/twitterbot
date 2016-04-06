@@ -10,8 +10,8 @@
     (backlog/update-newest-dm-read "newest_dm_id.txt" (get-in dm-response [:body 0 :id_str]))
     (let [links-to-add (links-from-direct-messages dm-response)]
       (doseq [link links-to-add]
-             (backlog/push-a-tweet "things_to_tweet.txt" link)
-             (dm-trusted-user (str "Added " link))))))
+        (backlog/push-a-tweet "things_to_tweet.txt" link)
+        (dm-trusted-user (str "Added " link))))))
 
 (defn- tweet-from-backlog []
   (let [url (backlog/pop-a-tweet "things_to_tweet.txt")]

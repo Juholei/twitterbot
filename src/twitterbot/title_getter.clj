@@ -1,8 +1,8 @@
 (ns twitterbot.title-getter
-    (:require [clojure.edn :as edn]
-              [clojure.string :as string]
-              [clojure.java.io :as io]
-              [clj-http.client :as client]))
+  (:require [clojure.edn :as edn]
+            [clojure.string :as string]
+            [clojure.java.io :as io]
+            [clj-http.client :as client]))
 
 (def ^:private html-character-map (edn/read-string (slurp (io/resource "html_characters.edn"))))
 
