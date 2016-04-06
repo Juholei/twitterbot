@@ -10,3 +10,5 @@ pom.xml.asc
 .hg/
 config.edn
 newest_dm_id.txt
+.DS_Store
+things_to_tweet.txt

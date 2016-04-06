@@ -1,5 +1,5 @@
 (ns twitterbot.config
-    (:require [clojure.edn :as edn]))
+  (:require [clojure.edn :as edn]))
 
 (def config {:consumerkey ""
              :consumersecret ""
