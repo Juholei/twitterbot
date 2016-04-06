@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [twitterbot.my-twitter :refer :all]
             [twitterbot.tweet-backlog :as backlog]
-            [twitterbot.config :refer [config]]
+            [twitterbot.config :refer :all]
             [twitterbot.title-getter :refer [retrieve-webpage get-title-from-webpage replace-html-characters]]))
 
 (defn- get-links-from-direct-messages []
@@ -24,5 +24,7 @@
     (dm-trusted-user (str "Just tweeted " url))))
 
 (defn -main [& args]
+  (load-config "config.edn")
+  (create-oauth-credentials)
   (get-links-from-direct-messages)
   (tweet-from-backlog))

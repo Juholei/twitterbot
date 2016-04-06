@@ -8,12 +8,14 @@
 (def ^:private max-link-length 23)
 (def ^:private max-tweet-length 140)
 
-(def ^:private oauth-credentials
-  (make-oauth-creds (config :consumerkey)
-                    (config :consumersecret)
-                    (config :usertoken)
-                    (config :usersecret)))
+(def ^:private oauth-credentials)
 
+(defn create-oauth-credentials []
+  (alter-var-root #'oauth-credentials
+                  (constantly (make-oauth-creds (config :consumerkey)
+                                    (config :consumersecret)
+                                    (config :usertoken)
+                                    (config :usersecret)))))
 
 (defn tweet [title url]
   (let [to-be-tweeted (string/join " " [title url])]
@@ -52,7 +54,7 @@
 
 (defn add-hashtags [page-title hashtags]
   (if (empty? hashtags)
-    (str page-title)
+    page-title
     (let [new-tweet (string/join " " [page-title (first hashtags)])]
       (when (complement too-long-tweet?) new-tweet)
         (recur new-tweet (rest hashtags)))))

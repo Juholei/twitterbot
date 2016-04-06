@@ -1,7 +1,14 @@
 (ns twitterbot.config
     (:require [clojure.edn :as edn]))
 
-(defn- load-config [filename]
-  (edn/read-string (slurp filename)))
+(def config {:consumerkey ""
+             :consumersecret ""
+             :usertoken ""
+             :usersecret ""
+             :trusteduser ""
+             :hashtags []})
 
-(def config (load-config "config.edn"))
+(defn load-config [filename]
+  (when-let [config-from-file (edn/read-string (slurp filename))]
+    (alter-var-root #'config (constantly config-from-file))))
+

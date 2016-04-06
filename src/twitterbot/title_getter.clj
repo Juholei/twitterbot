@@ -14,7 +14,7 @@
 
 (defn- replace-html-character [text characters]
   (if (empty? characters)
-    (str text)
+    text
     (recur (string/replace text (first characters) (html-character-map (first characters))) (rest characters))))
 
 (defn replace-html-characters [text]
