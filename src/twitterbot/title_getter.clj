@@ -7,7 +7,7 @@
 (def ^:private html-character-map (edn/read-string (slurp (io/resource "html_characters.edn"))))
 
 (defn retrieve-webpage [url]
-  ((client/get url) :body))
+  ((client/get url {:insecure? true}) :body))
 
 (defn get-title-from-webpage [html]
   (nth (re-find #"<title>\s*(.*)\s*</title>" html) 1))
